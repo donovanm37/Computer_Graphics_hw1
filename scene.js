@@ -16,6 +16,11 @@ function init() {
     camera.position.set(0, 100, 200);
     camera.lookAt(scene.position);
 
+
+    document.addEventListener( 'keypress', onDocumentKeyPress, false );
+
+
+
     //////////////
     // renderer //
     //////////////
@@ -83,7 +88,70 @@ function render() {
     renderer.render(scene, camera);
 }
 
+function onDocumentKeyPress( event ) {
 
+    var keyCode = event.which;
+    var positionDelta = 20;
+    var rotationDelta = 0.1;
+    //A
+    if ( keyCode == 97 )
+    {
+
+        camera.position.x -= positionDelta;
+    }
+    //D
+    else if ( keyCode == 100 )
+    {
+
+        camera.position.x += positionDelta;
+    }
+    //W
+    else if ( keyCode == 119 )
+    {
+        camera.position.z -= positionDelta;
+    }
+    //S
+    else if ( keyCode == 115 )
+    {
+        camera.position.z += positionDelta;
+
+    }
+    //Q
+    else if ( keyCode == 113 )
+    {
+        camera.position.y += positionDelta;
+    }
+    //E
+    else if ( keyCode == 101 )
+    {
+        camera.position.y -= positionDelta;
+
+    }
+    //T
+    else if ( keyCode == 116 )
+    {
+        camera.rotation.x += rotationDelta;
+
+    }
+    //G
+    else if ( keyCode == 103 )
+    {
+        camera.rotation.x -= rotationDelta;
+
+    }
+    //F
+    else if ( keyCode == 102 )
+    {
+        camera.rotation.y += rotationDelta;
+
+    }
+    //H
+    else if ( keyCode == 104 )
+    {
+        camera.rotation.y -= rotationDelta;
+    }
+    camera.updateProjectionMatrix();
+}
 //// Create scene
 //var scene = new THREE.Scene();
 
