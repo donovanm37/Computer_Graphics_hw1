@@ -5,7 +5,7 @@
 }(this, (function (exports) { 'use strict';
 
 	// Polyfills
-
+//yhtygy
 	if ( Number.EPSILON === undefined ) {
 
 		Number.EPSILON = Math.pow( 2, - 52 );
