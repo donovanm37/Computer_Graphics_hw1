@@ -37,6 +37,7 @@ function init() {
     ////////////
     // floor  //
     ////////////
+    //
     var floorTexture = new THREE.ImageUtils.loadTexture('images/Grass.jpg');
     floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
     floorTexture.repeat.set(10, 10);
