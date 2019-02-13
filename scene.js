@@ -37,7 +37,6 @@ function init() {
     ////////////
     // floor  //
     ////////////
-    //
     var floorTexture = new THREE.ImageUtils.loadTexture('images/Grass.jpg');
     floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
     floorTexture.repeat.set(10, 10);
@@ -68,16 +67,25 @@ function init() {
     materialArray.push(new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/dawnmountain-yneg.png') }));
     materialArray.push(new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/dawnmountain-zpos.png') }));
     materialArray.push(new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/dawnmountain-zneg.png') }));
-    for (var i = 0; i < 6; i++)
+    for (var i = 0; i < 6; i++) {
         materialArray[i].side = THREE.BackSide;
+    }
     var skyboxMaterial = new THREE.MeshFaceMaterial(materialArray);
     var skyboxGeom = new THREE.CubeGeometry(5000, 5000, 5000, 1, 1, 1);
     var skybox = new THREE.Mesh(skyboxGeom, skyboxMaterial);
     scene.add(skybox);
     
-    Building(0,25,0);
-    Building(100,25,0);
-    Building(-100,25,0);
+    House(0,25,0);
+    House(100,25,0);
+    House(-100,25,0);
+    Tree(0,25,100);
+    Tree(100,25,100);
+    Tree(-100,25,100);
+
+    var light = new THREE.DirectionalLight(0xddd, 1);
+    light.position.set(0, 200, 1);
+    scene.add(light);
+
 
 }
 
@@ -98,7 +106,6 @@ function onDocumentKeyPress( event ) {
 
     var keyCode = event.which;
     var positionDelta = 20;
-    var rotationDelta = 0.1;
     //A
     if ( keyCode == 97 )
     {
@@ -162,9 +169,7 @@ function onDocumentKeyPress( event ) {
 //*/
 
 
-var light = new THREE.DirectionalLight(0xddd, 1);
-light.position.set(0, 0, 1);
-scene.add(light);
+
 
 //camera.position.x = 2;
 //camera.position.y = 1;
