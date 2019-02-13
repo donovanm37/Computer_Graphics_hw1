@@ -73,6 +73,13 @@ function init() {
     cube.position.set(0, 25, 0);
     scene.add(cube);
 
+    var geometry2 = new THREE.ConeGeometry( 60, 40, 4);
+    var material2 = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+    var cone = new THREE.Mesh( geometry2, material2 );
+    cone.position.set(0, 75, 0);
+    cone.rotateY(Math.PI / 4);
+    scene.add( cone );
+
 }
 
 function animate() {
@@ -115,40 +122,6 @@ function onDocumentKeyPress( event ) {
     {
         camera.position.z += positionDelta;
 
-    }
-    //Q
-    else if ( keyCode == 113 )
-    {
-        camera.position.y += positionDelta;
-    }
-    //E
-    else if ( keyCode == 101 )
-    {
-        camera.position.y -= positionDelta;
-
-    }
-    //T
-    else if ( keyCode == 116 )
-    {
-        camera.rotation.x += rotationDelta;
-
-    }
-    //G
-    else if ( keyCode == 103 )
-    {
-        camera.rotation.x -= rotationDelta;
-
-    }
-    //F
-    else if ( keyCode == 102 )
-    {
-        camera.rotation.y += rotationDelta;
-
-    }
-    //H
-    else if ( keyCode == 104 )
-    {
-        camera.rotation.y -= rotationDelta;
     }
     camera.updateProjectionMatrix();
 }
