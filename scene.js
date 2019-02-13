@@ -66,7 +66,7 @@ function init() {
 
     ////////////
     //  cube  //
-    ////////////
+    /////////////
 
     
     var material = new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/crate.jpg') });
