@@ -16,7 +16,7 @@ function init() {
     camera.position.set(0, 100, 200);
     camera.lookAt(scene.position);
 
-
+    /// camera movement by keypress
     document.addEventListener( 'keypress', onDocumentKeyPress, false );
 
 
@@ -37,7 +37,7 @@ function init() {
     ////////////
     // floor  //
     ////////////
-    var floorTexture = new THREE.ImageUtils.loadTexture('images/ground.jpg');
+    var floorTexture = new THREE.ImageUtils.loadTexture('images/Grass.jpg');
     floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
     floorTexture.repeat.set(10, 10);
     var floorMaterial = new THREE.MeshBasicMaterial({ map: floorTexture, side: THREE.DoubleSide });
@@ -46,6 +46,16 @@ function init() {
     floor.position.y = -0.5;
     floor.rotation.x = Math.PI / 2;
     scene.add(floor);
+
+    var floorTexture2 = new THREE.ImageUtils.loadTexture('images/asphalt.jpg');
+    floorTexture2.wrapS = floorTexture2.wrapT = THREE.RepeatWrapping;
+    floorTexture2.repeat.set(10, 10);
+    var floorMaterial2 = new THREE.MeshBasicMaterial({ map: floorTexture2, side: THREE.DoubleSide });
+    var floorGeometry2 = new THREE.PlaneGeometry(1000, 200, 10, 10);
+    var floor2 = new THREE.Mesh(floorGeometry2, floorMaterial2);
+    floor2.position.set(0,0,140);
+    floor2.rotation.x = Math.PI / 2;
+    scene.add(floor2);
 
     ////////////
     // skybox //
@@ -63,15 +73,10 @@ function init() {
     var skyboxGeom = new THREE.CubeGeometry(5000, 5000, 5000, 1, 1, 1);
     var skybox = new THREE.Mesh(skyboxGeom, skyboxMaterial);
     scene.add(skybox);
-
-    ////////////
-    //  cube  //
-    /////////////
-
     
     Building(0,25,0);
     Building(100,25,0);
-
+    Building(-100,25,0);
 
 }
 
