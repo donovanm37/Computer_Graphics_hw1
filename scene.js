@@ -1,5 +1,6 @@
 var scene, camera, renderer;
 var loadedObject = null;
+var spotLight, lightHelper, shadowCameraHelper;
 init();
 animate();
 
@@ -118,6 +119,8 @@ function init() {
     Tree(-250,25,270);
     Tree(-350,25,270);
     Tree(-450,25,270);
+
+    Sun(800,400,35);
 
     // instantiate a loader
     var loader = new THREE.OBJLoader();

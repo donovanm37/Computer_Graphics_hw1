@@ -53,7 +53,7 @@ function Tree(x,y,z) {
     scene.add(cylinder);
 
     var geometry2 = new THREE.SphereGeometry( 10, 32, 32 );
-    var material2 = new THREE.MeshBasicMaterial( {color: 0x136207} );
+    var material2 = new THREE.MeshLambertMaterial( {color: 0x136207} );
     var sphere = new THREE.Mesh( geometry2, material2 );
     sphere.position.set(x,y + 25,z);
     scene.add(sphere);
@@ -67,4 +67,30 @@ function Tree(x,y,z) {
     var sphere3 = new THREE.Mesh( geometry4, material2 );
     sphere3.position.set(x,y,z);
     scene.add(sphere3);
+}
+
+function Sun(x, y, z) {
+    var ambient = new THREE.AmbientLight( 0xffffff, 0.1 );
+    scene.add( ambient );
+    spotLight = new THREE.SpotLight( 0xffffff, 1 );
+    spotLight.position.set( x, y, z );
+    spotLight.angle = Math.PI / 4;
+    spotLight.penumbra = 0.05;
+    spotLight.decay = 0;
+    spotLight.distance = 250;
+    spotLight.castShadow = true;
+    spotLight.shadow.mapSize.width = 1024;
+    spotLight.shadow.mapSize.height = 1024;
+    spotLight.shadow.camera.near = 10;
+    spotLight.shadow.camera.far = 200;
+    scene.add( spotLight );
+    lightHelper = new THREE.SpotLightHelper( spotLight );
+    scene.add( lightHelper );
+
+    var geometry = new THREE.SphereGeometry( 10, 32, 32 );
+    var material = new THREE.MeshBasicMaterial( {color: 0xf9d71c} );
+    var sphere = new THREE.Mesh( geometry, material );
+    sphere.position.set(x,y,z);
+    scene.add(sphere);
+
 }
