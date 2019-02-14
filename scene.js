@@ -75,27 +75,27 @@ function init() {
     var skybox = new THREE.Mesh(skyboxGeom, skyboxMaterial);
     scene.add(skybox);
     
-    House(400,25,-50);
-    House(300,25,-50);
-    House(200,25,-50);
-    House(100,25,-50);
-    House(0,25,-50);
-    House(100,25,-50);
-    House(-100,25,-50);
-    House(-200,25,-50);
-    House(-300,25,-50);
-    House(-400,25,-50);
+    House(400,25,-50, false);
+    House(300,25,-50, false);
+    House(200,25,-50, false);
+    House(100,25,-50, false);
+    House(0,25,-50, false);
+    House(100,25,-50, false);
+    House(-100,25,-50, false);
+    House(-200,25,-50, false);
+    House(-300,25,-50, false);
+    House(-400,25,-50, false);
 
-    House(400,25,320);
-    House(300,25,320);
-    House(200,25,320);
-    House(100,25,320);
-    House(0,25,320);
-    House(100,25,320);
-    House(-100,25,320);
-    House(-200,25,320);
-    House(-300,25,320);
-    House(-400,25,320);
+    House(400,25,320, true);
+    House(300,25,320, true);
+    House(200,25,320, true);
+    House(100,25,320, true);
+    House(0,25,320, true);
+    House(100,25,320, true);
+    House(-100,25,320, true);
+    House(-200,25,320, true);
+    House(-300,25,320, true);
+    House(-400,25,320, true);
 
     Tree(450,25,0);
     Tree(350,25,0);
