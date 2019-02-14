@@ -16,7 +16,7 @@ function init() {
     camera.position.set(0, 100, 200);
     camera.lookAt(scene.position);
 
-
+    /// camera movement by keypress
     document.addEventListener( 'keypress', onDocumentKeyPress, false );
 
 
@@ -37,7 +37,7 @@ function init() {
     ////////////
     // floor  //
     ////////////
-    var floorTexture = new THREE.ImageUtils.loadTexture('images/ground.jpg');
+    var floorTexture = new THREE.ImageUtils.loadTexture('images/Grass.jpg');
     floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
     floorTexture.repeat.set(10, 10);
     var floorMaterial = new THREE.MeshBasicMaterial({ map: floorTexture, side: THREE.DoubleSide });
@@ -46,6 +46,16 @@ function init() {
     floor.position.y = -0.5;
     floor.rotation.x = Math.PI / 2;
     scene.add(floor);
+
+    var floorTexture2 = new THREE.ImageUtils.loadTexture('images/asphalt.jpg');
+    floorTexture2.wrapS = floorTexture2.wrapT = THREE.RepeatWrapping;
+    floorTexture2.repeat.set(10, 10);
+    var floorMaterial2 = new THREE.MeshBasicMaterial({ map: floorTexture2, side: THREE.DoubleSide });
+    var floorGeometry2 = new THREE.PlaneGeometry(1000, 200, 10, 10);
+    var floor2 = new THREE.Mesh(floorGeometry2, floorMaterial2);
+    floor2.position.set(0,0,140);
+    floor2.rotation.x = Math.PI / 2;
+    scene.add(floor2);
 
     ////////////
     // skybox //
@@ -57,21 +67,25 @@ function init() {
     materialArray.push(new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/dawnmountain-yneg.png') }));
     materialArray.push(new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/dawnmountain-zpos.png') }));
     materialArray.push(new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/dawnmountain-zneg.png') }));
-    for (var i = 0; i < 6; i++)
+    for (var i = 0; i < 6; i++) {
         materialArray[i].side = THREE.BackSide;
+    }
     var skyboxMaterial = new THREE.MeshFaceMaterial(materialArray);
     var skyboxGeom = new THREE.CubeGeometry(5000, 5000, 5000, 1, 1, 1);
     var skybox = new THREE.Mesh(skyboxGeom, skyboxMaterial);
     scene.add(skybox);
+    
+    House(0,25,0);
+    House(100,25,0);
+    House(-100,25,0);
+    Tree(0,25,100);
+    Tree(100,25,100);
+    Tree(-100,25,100);
 
-    ////////////
-    //  cube  //
-    ////////////
-    var material = new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/crate.jpg') });
-    var geometry = new THREE.CubeGeometry(50, 50, 50);
-    var cube = new THREE.Mesh(geometry, material);
-    cube.position.set(0, 25, 0);
-    scene.add(cube);
+    var light = new THREE.DirectionalLight(0xddd, 1);
+    light.position.set(0, 200, 1);
+    scene.add(light);
+
 
 }
 
@@ -92,7 +106,6 @@ function onDocumentKeyPress( event ) {
 
     var keyCode = event.which;
     var positionDelta = 20;
-    var rotationDelta = 0.1;
     //A
     if ( keyCode == 97 )
     {
@@ -115,40 +128,6 @@ function onDocumentKeyPress( event ) {
     {
         camera.position.z += positionDelta;
 
-    }
-    //Q
-    else if ( keyCode == 113 )
-    {
-        camera.position.y += positionDelta;
-    }
-    //E
-    else if ( keyCode == 101 )
-    {
-        camera.position.y -= positionDelta;
-
-    }
-    //T
-    else if ( keyCode == 116 )
-    {
-        camera.rotation.x += rotationDelta;
-
-    }
-    //G
-    else if ( keyCode == 103 )
-    {
-        camera.rotation.x -= rotationDelta;
-
-    }
-    //F
-    else if ( keyCode == 102 )
-    {
-        camera.rotation.y += rotationDelta;
-
-    }
-    //H
-    else if ( keyCode == 104 )
-    {
-        camera.rotation.y -= rotationDelta;
     }
     camera.updateProjectionMatrix();
 }
@@ -190,9 +169,7 @@ function onDocumentKeyPress( event ) {
 //*/
 
 
-var light = new THREE.DirectionalLight(0xddd, 1);
-light.position.set(0, 0, 1);
-scene.add(light);
+
 
 //camera.position.x = 2;
 //camera.position.y = 1;
