@@ -5,10 +5,10 @@ function House(x, y, z, rotate) {
     cube.position.set(x, y, z);
     scene.add(cube);
 
-    var geometry2 = new THREE.ConeGeometry( 60, 40, 4);
-    var material2 = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+    var geometry2 = new THREE.ConeGeometry( 50, 30, 4);
+    var material2 = new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/roofTexture.jpg')});
     var roof = new THREE.Mesh( geometry2, material2 );
-    roof.position.set(x, y + 45, z);
+    roof.position.set(x, y + 40, z);
     roof.rotateY(Math.PI / 4);
     scene.add(roof);
 
