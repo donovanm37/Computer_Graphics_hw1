@@ -75,7 +75,7 @@ function init() {
     var skybox = new THREE.Mesh(skyboxGeom, skyboxMaterial);
     scene.add(skybox);
     
-    House(0,25,0);
+    House(0,25,0, true);
     House(100,25,0);
     House(-100,25,0);
     Tree(0,25,100);
@@ -85,7 +85,7 @@ function init() {
     // instantiate a loader
     var loader = new THREE.OBJLoader();
 
-// load a resource
+    // load a resource
     loader.load(
         // resource URL
         'Objects/Lamborghini_Aventador.obj',
