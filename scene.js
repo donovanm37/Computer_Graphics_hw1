@@ -82,6 +82,35 @@ function init() {
     Tree(100,25,100);
     Tree(-100,25,100);
 
+    // instantiate a loader
+    var loader = new THREE.OBJLoader();
+
+// load a resource
+    loader.load(
+        // resource URL
+        'Objects/Lamborghini_Aventador.obj',
+        // called when resource is loaded
+        function ( object ) {
+            object.position.set(-70,0,100);
+            object.rotateY(Math.PI / 2);
+            object.scale.set(0.2,0.2,0.2);
+            scene.add( object );
+
+        },
+        // called when loading is in progresses
+        function ( xhr ) {
+
+            console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+        },
+        // called when loading has errors
+        function ( error ) {
+
+            console.log( 'An error happened' );
+
+        }
+    );
+
     var light = new THREE.DirectionalLight(0xddd, 1);
     light.position.set(0, 200, 1);
     scene.add(light);
