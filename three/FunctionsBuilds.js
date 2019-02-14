@@ -1,4 +1,4 @@
-function House(x, y, z) {
+function House(x, y, z, rotate) {
     var material = new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/red_bricks.jpg') });
     var geometry = new THREE.CubeGeometry(50, 50, 50);
     var cube = new THREE.Mesh(geometry, material);
@@ -16,20 +16,32 @@ function House(x, y, z) {
     var geometry3 = new THREE.CubeGeometry(10, 20, 1);
     var door = new THREE.Mesh(geometry3, material3);
     door.position.set(x + 12, y - 12.5, z + 25);
+    if (rotate === true) {
+    door.position.z -= 50;
+    }
     scene.add(door);
 
     var materialwindow = new THREE.MeshBasicMaterial({color: 0xffff00});
     var geometrywindow = new THREE.CubeGeometry(10, 10, 1);
     var window1 = new THREE.Mesh(geometrywindow, materialwindow);
     window1.position.set(x + 12, y + 10, z + 25);
+    if (rotate === true) {
+        window1.position.z -= 50;
+    }
     scene.add(window1);
 
     var window2 = new THREE.Mesh(geometrywindow, materialwindow);
     window2.position.set(x - 12, y + 10, z + 25);
+    if (rotate === true) {
+        window2.position.z -= 50;
+    }
     scene.add(window2);
 
     var window3 = new THREE.Mesh(geometrywindow,materialwindow);
     window3.position.set(x - 12, y - 12.5, z + 25);
+    if (rotate === true) {
+        window3.position.z -= 50;
+    }
     scene.add(window3);
 }
 
