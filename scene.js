@@ -1,5 +1,5 @@
 var scene, camera, renderer;
-
+var loadedObject = null;
 init();
 animate();
 
@@ -94,6 +94,7 @@ function init() {
             object.position.set(-70,0,100);
             object.rotateY(Math.PI / 2);
             object.scale.set(0.2,0.2,0.2);
+            loadedObject = object;
             scene.add( object );
 
         },
@@ -115,14 +116,25 @@ function init() {
     light.position.set(0, 200, 1);
     scene.add(light);
 
+    var controls = new THREE.OrbitControls(camera);
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 2;
+    controls.noKeys = true;
 
 }
 
 function animate() {
     requestAnimationFrame(animate);
+    MoveCar();
     render();
 }
 
+function MoveCar() {
+    loadedObject.position.x += 2;
+    if (loadedObject.position.x === 450) {
+        loadedObject.position.set(-450,0,100);
+    }
+}
 function update() {
 
 }
@@ -205,19 +217,5 @@ function onDocumentKeyPress( event ) {
 //camera.position.Z = 5;
 ////renderer.render(scene, camera);
 
-var controls = new THREE.OrbitControls(camera);
-controls.autoRotate = true;
-controls.autoRotateSpeed = 2;
-controls.noKeys = true;
 
 var clock = new THREE.Clock();
-var render = function () {
-	requestAnimationFrame(render);
-//	var delta = clock.getDelta();
-
-//	cube.rotation.x += 3, 3 * delta;
-//	cube.rotation.z += delta;
-
-	renderer.render(scene, camera);
-};
-render();
