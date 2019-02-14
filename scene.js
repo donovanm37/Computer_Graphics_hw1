@@ -120,6 +120,8 @@ function init() {
     Tree(-350,25,270);
     Tree(-450,25,270);
 
+    Lantern(0,25,10);
+
     Sun(800,400,35);
 
     // instantiate a loader
