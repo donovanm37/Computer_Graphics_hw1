@@ -4,27 +4,39 @@ init();
 animate();
 
 function init() {
-    // Scene
+    ////////////
+    // scene  //
+    ////////////
     scene = new THREE.Scene();
 
-    // Camera
+    ////////////
+    // camera //
+    ////////////
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 20000);
     camera.position.set(0, 100, 200);
     camera.lookAt(scene.position);
 
-    /// Camera movement by keypress
+    /// camera movement by keypress
     document.addEventListener( 'keypress', onDocumentKeyPress, false );
 
-    // Renderer
+
+
+    //////////////
+    // renderer //
+    //////////////
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    //  Axes
+    ////////////
+    //  axes  //
+    ////////////
     var axes = new THREE.AxisHelper(100);
     scene.add(axes);
 
-    // Floor - Grass
+    ////////////
+    // floor  //
+    ////////////
     var floorTexture = new THREE.ImageUtils.loadTexture('images/Grass.jpg');
     floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
     floorTexture.repeat.set(10, 10);
@@ -35,7 +47,6 @@ function init() {
     floor.rotation.x = Math.PI / 2;
     scene.add(floor);
 
-    // Floor - Road
     var floorTexture2 = new THREE.ImageUtils.loadTexture('images/asphalt.jpg');
     floorTexture2.wrapS = floorTexture2.wrapT = THREE.RepeatWrapping;
     floorTexture2.repeat.set(10, 10);
@@ -46,7 +57,9 @@ function init() {
     floor2.rotation.x = Math.PI / 2;
     scene.add(floor2);
 
-    // Skybox materials
+    ////////////
+    // skybox //
+    ////////////
     var materialArray = [];
     materialArray.push(new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/dawnmountain-xpos.png') }));
     materialArray.push(new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/dawnmountain-xneg.png') }));
@@ -54,8 +67,6 @@ function init() {
     materialArray.push(new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/dawnmountain-yneg.png') }));
     materialArray.push(new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/dawnmountain-zpos.png') }));
     materialArray.push(new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/dawnmountain-zneg.png') }));
-
-    // Adding materials to skybox
     for (var i = 0; i < 6; i++) {
         materialArray[i].side = THREE.BackSide;
     }
@@ -63,8 +74,7 @@ function init() {
     var skyboxGeom = new THREE.CubeGeometry(5000, 5000, 5000, 1, 1, 1);
     var skybox = new THREE.Mesh(skyboxGeom, skyboxMaterial);
     scene.add(skybox);
-
-    // Object placement
+    
     House(0,25,0);
     House(100,25,0);
     House(-100,25,0);
@@ -72,7 +82,35 @@ function init() {
     Tree(100,25,100);
     Tree(-100,25,100);
 
-    // Light
+    // instantiate a loader
+    var loader = new THREE.OBJLoader();
+
+// load a resource
+    loader.load(
+        // resource URL
+        'Objects/Lamborghini_Aventador.obj',
+        // called when resource is loaded
+        function ( object ) {
+            object.position.set(-70,0,100);
+            object.rotateY(Math.PI / 2);
+            object.scale.set(0.2,0.2,0.2);
+            scene.add( object );
+
+        },
+        // called when loading is in progresses
+        function ( xhr ) {
+
+            console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+        },
+        // called when loading has errors
+        function ( error ) {
+
+            console.log( 'An error happened' );
+
+        }
+    );
+
     var light = new THREE.DirectionalLight(0xddd, 1);
     light.position.set(0, 200, 1);
     scene.add(light);
@@ -175,10 +213,10 @@ controls.noKeys = true;
 var clock = new THREE.Clock();
 var render = function () {
 	requestAnimationFrame(render);
-	var delta = clock.getDelta();
+//	var delta = clock.getDelta();
 
-	//camera.rotation.x += 3, 3 * delta;
-	//camera.rotation.z += delta;
+//	cube.rotation.x += 3, 3 * delta;
+//	cube.rotation.z += delta;
 
 	renderer.render(scene, camera);
 };
