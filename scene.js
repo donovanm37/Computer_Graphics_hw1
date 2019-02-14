@@ -75,12 +75,49 @@ function init() {
     var skybox = new THREE.Mesh(skyboxGeom, skyboxMaterial);
     scene.add(skybox);
     
-    House(0,25,0);
-    House(100,25,0);
-    House(-100,25,0);
-    Tree(0,25,100);
-    Tree(100,25,100);
-    Tree(-100,25,100);
+    House(400,25,-50);
+    House(300,25,-50);
+    House(200,25,-50);
+    House(100,25,-50);
+    House(0,25,-50);
+    House(100,25,-50);
+    House(-100,25,-50);
+    House(-200,25,-50);
+    House(-300,25,-50);
+    House(-400,25,-50);
+
+    House(400,25,320);
+    House(300,25,320);
+    House(200,25,320);
+    House(100,25,320);
+    House(0,25,320);
+    House(100,25,320);
+    House(-100,25,320);
+    House(-200,25,320);
+    House(-300,25,320);
+    House(-400,25,320);
+
+    Tree(450,25,0);
+    Tree(350,25,0);
+    Tree(250,25,0);
+    Tree(150,25,0);
+    Tree(50,25,0);
+    Tree(-50,25,0);
+    Tree(-150,25,0);
+    Tree(-250,25,0);
+    Tree(-350,25,0);
+    Tree(-450,25,0);
+
+    Tree(450,25,270);
+    Tree(350,25,270);
+    Tree(250,25,270);
+    Tree(150,25,270);
+    Tree(50,25,270);
+    Tree(-50,25,270);
+    Tree(-150,25,270);
+    Tree(-250,25,270);
+    Tree(-350,25,270);
+    Tree(-450,25,270);
 
     // instantiate a loader
     var loader = new THREE.OBJLoader();
