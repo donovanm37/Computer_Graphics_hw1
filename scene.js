@@ -4,39 +4,27 @@ init();
 animate();
 
 function init() {
-    ////////////
-    // scene  //
-    ////////////
+    // Scene
     scene = new THREE.Scene();
 
-    ////////////
-    // camera //
-    ////////////
+    // Camera
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 20000);
     camera.position.set(0, 100, 200);
     camera.lookAt(scene.position);
 
-    /// camera movement by keypress
+    /// Camera movement by keypress
     document.addEventListener( 'keypress', onDocumentKeyPress, false );
 
-
-
-    //////////////
-    // renderer //
-    //////////////
+    // Renderer
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    ////////////
-    //  axes  //
-    ////////////
+    //  Axes
     var axes = new THREE.AxisHelper(100);
     scene.add(axes);
 
-    ////////////
-    // floor  //
-    ////////////
+    // Floor - Grass
     var floorTexture = new THREE.ImageUtils.loadTexture('images/Grass.jpg');
     floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
     floorTexture.repeat.set(10, 10);
@@ -47,6 +35,7 @@ function init() {
     floor.rotation.x = Math.PI / 2;
     scene.add(floor);
 
+    // Floor - Road
     var floorTexture2 = new THREE.ImageUtils.loadTexture('images/asphalt.jpg');
     floorTexture2.wrapS = floorTexture2.wrapT = THREE.RepeatWrapping;
     floorTexture2.repeat.set(10, 10);
@@ -57,9 +46,7 @@ function init() {
     floor2.rotation.x = Math.PI / 2;
     scene.add(floor2);
 
-    ////////////
-    // skybox //
-    ////////////
+    // Skybox materials
     var materialArray = [];
     materialArray.push(new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/dawnmountain-xpos.png') }));
     materialArray.push(new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/dawnmountain-xneg.png') }));
@@ -67,6 +54,8 @@ function init() {
     materialArray.push(new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/dawnmountain-yneg.png') }));
     materialArray.push(new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/dawnmountain-zpos.png') }));
     materialArray.push(new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/dawnmountain-zneg.png') }));
+
+    // Adding materials to skybox
     for (var i = 0; i < 6; i++) {
         materialArray[i].side = THREE.BackSide;
     }
@@ -74,7 +63,8 @@ function init() {
     var skyboxGeom = new THREE.CubeGeometry(5000, 5000, 5000, 1, 1, 1);
     var skybox = new THREE.Mesh(skyboxGeom, skyboxMaterial);
     scene.add(skybox);
-    
+
+    // Object placement
     House(0,25,0);
     House(100,25,0);
     House(-100,25,0);
@@ -82,6 +72,7 @@ function init() {
     Tree(100,25,100);
     Tree(-100,25,100);
 
+    // Light
     var light = new THREE.DirectionalLight(0xddd, 1);
     light.position.set(0, 200, 1);
     scene.add(light);
@@ -184,10 +175,10 @@ controls.noKeys = true;
 var clock = new THREE.Clock();
 var render = function () {
 	requestAnimationFrame(render);
-//	var delta = clock.getDelta();
+	var delta = clock.getDelta();
 
-//	cube.rotation.x += 3, 3 * delta;
-//	cube.rotation.z += delta;
+	//camera.rotation.x += 3, 3 * delta;
+	//camera.rotation.z += delta;
 
 	renderer.render(scene, camera);
 };
