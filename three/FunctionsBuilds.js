@@ -109,3 +109,101 @@ function Lantern(x,y,z) {
     scene.add( cylinder2 );
 
 }
+
+function Car(x,y,z){
+    var mtlLoader = new THREE.MTLLoader();
+    mtlLoader.setPath( 'Objects/' );
+    url = "Lamborghini_Aventador.mtl";
+    mtlLoader.load( url, function( materials ) {
+
+        materials.preload();
+
+        var objLoader = new THREE.OBJLoader();
+        objLoader.setMaterials( materials );
+        objLoader.setPath( 'Objects/' );
+        objLoader.load( 'Lamborghini_Aventador.obj', function ( object ) {
+                object.position.set(x,y,z);
+                object.rotateY(Math.PI / 2);
+                object.scale.set(0.2,0.2,0.2);
+                loadedObject = object;
+                scene.add( object );
+
+            },
+            // called when loading is in progresses
+            function ( xhr ) {
+
+                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+            },
+            // called when loading has errors
+            function ( error ) {
+
+                console.log( 'An error happened' );
+
+            });
+
+    });
+}
+
+function Cloud(x,y,z) {
+    var loader = new THREE.OBJLoader();
+    loader.load(
+        // resource URL
+        'Objects/cloud.obj',
+        // called when resource is loaded
+        function ( object ) {
+            object.position.set(x,y,z);
+            object.scale.set(0.2,0.2,0.2);
+            loadedObject2 = object;
+            scene.add( object );
+
+        },
+        // called when loading is in progresses
+        function ( xhr ) {
+
+            console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+        },
+        // called when loading has errors
+        function ( error ) {
+
+            console.log( 'An error happened' );
+
+        }
+    );
+}
+
+function Plane(x,y,z) {
+    var mtlLoader = new THREE.MTLLoader();
+    mtlLoader.setPath( 'Objects/' );
+    var url = "Plane.mtl";
+    mtlLoader.load( url, function( materials ) {
+
+        materials.preload();
+
+        var objLoader = new THREE.OBJLoader();
+        objLoader.setMaterials( materials );
+        objLoader.setPath( 'Objects/' );
+        objLoader.load( 'Plane.obj', function ( object ) {
+                object.position.set(x,y,z);
+                object.scale.set(0.2,0.2,0.2);
+                object.rotateY(Math.PI / 4);
+                loadedObject3 = object;
+                scene.add( object );
+
+            },
+            // called when loading is in progresses
+            function ( xhr ) {
+
+                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+            },
+            // called when loading has errors
+            function ( error ) {
+
+                console.log( 'An error happened' );
+
+            });
+
+    });
+}
