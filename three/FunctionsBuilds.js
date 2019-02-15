@@ -77,22 +77,9 @@ function Tree(x,y,z) {
 }
 
 function Sun(x, y, z) {
-    var ambient = new THREE.AmbientLight( 0xffffff, 0.1 );
-    scene.add( ambient );
-    spotLight = new THREE.SpotLight( 0xffffff, 1 );
-    spotLight.position.set( x, y, z );
-    spotLight.angle = Math.PI / 4;
-    spotLight.penumbra = 0.05;
-    spotLight.decay = 0;
-    spotLight.distance = 250;
-    spotLight.castShadow = true;
-    spotLight.shadow.mapSize.width = 1024;
-    spotLight.shadow.mapSize.height = 1024;
-    spotLight.shadow.camera.near = 10;
-    spotLight.shadow.camera.far = 200;
-    scene.add( spotLight );
-    lightHelper = new THREE.SpotLightHelper( spotLight );
-    scene.add( lightHelper );
+    var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
+    directionalLight.position.set(x,y,z);
+    scene.add( directionalLight );
 
     var geometry = new THREE.SphereGeometry( 10, 32, 32 );
     var material = new THREE.MeshBasicMaterial( {color: 0xf9d71c} );
@@ -104,13 +91,19 @@ function Sun(x, y, z) {
 
 function Lantern(x,y,z) {
     var geometry = new THREE.CylinderGeometry( 5, 5, 50, 64 );
-    var material = new THREE.MeshLambertMaterial( {color: 0x808080} );
+    var material = new THREE.MeshPhongMaterial( {color: 0x808080} );
     var cylinder = new THREE.Mesh( geometry, material );
     cylinder.position.set(x,y,z);
     scene.add(cylinder);
 
+    var geometry3 = new THREE.SphereGeometry( 7, 32, 32, 0, 6.3, 2,1.3);
+    var material3 = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+    var lamp = new THREE.Mesh( geometry3, material3 );
+    lamp.position.set(x,y + 25,z);
+    scene.add(lamp);
+
     var geometry2 = new THREE.CylinderBufferGeometry( 10, 5, 10, 8 );
-    var material2 = new THREE.MeshLambertMaterial( {color: 0xffffff} );
+    var material2 = new THREE.MeshPhongMaterial( {color: 0xffffff} );
     var cylinder2 = new THREE.Mesh( geometry2, material2 );
     cylinder2.position.set(x,y + 25,z);
     scene.add( cylinder2 );

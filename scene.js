@@ -1,6 +1,7 @@
 var scene, camera, renderer;
 var loadedObject = null;
 var loadedObject2 = null;
+var loadedObject3 = null;
 var spotLight, lightHelper, shadowCameraHelper;
 init();
 animate();
@@ -145,35 +146,80 @@ function init() {
 
     Sun(800,400,35);
 
-    // instantiate a loader
-    var loader = new THREE.OBJLoader();
 
-// load a resource
-    loader.load(
-        // resource URL
-        'Objects/Lamborghini_Aventador.obj',
-        // called when resource is loaded
-        function ( object ) {
-            object.position.set(-70,0,100);
-            object.rotateY(Math.PI / 2);
-            object.scale.set(0.2,0.2,0.2);
-            loadedObject = object;
+
+    var mtlLoader = new THREE.MTLLoader();
+    mtlLoader.setPath( 'Objects/' );
+    var url = "Plane.mtl";
+    mtlLoader.load( url, function( materials ) {
+
+        materials.preload();
+
+        var objLoader = new THREE.OBJLoader();
+        objLoader.setMaterials( materials );
+        objLoader.setPath( 'Objects/' );
+        objLoader.load( 'Plane.obj', function ( object ) {
+                object.position.set(0,300,-100);
+                object.scale.set(0.2,0.2,0.2);
+                object.rotateY(Math.PI / 4);
+            loadedObject3 = object;
             scene.add( object );
 
         },
-        // called when loading is in progresses
-        function ( xhr ) {
+            // called when loading is in progresses
+            function ( xhr ) {
 
-            console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
 
-        },
-        // called when loading has errors
-        function ( error ) {
+            },
+            // called when loading has errors
+            function ( error ) {
 
-            console.log( 'An error happened' );
+                console.log( 'An error happened' );
 
-        }
-    );
+            });
+
+    });
+
+    mtlLoader.setPath( 'Objects/' );
+    url = "Lamborghini_Aventador.mtl";
+    mtlLoader.load( url, function( materials ) {
+
+        materials.preload();
+
+        var objLoader = new THREE.OBJLoader();
+        objLoader.setMaterials( materials );
+        objLoader.setPath( 'Objects/' );
+        objLoader.load( 'Lamborghini_Aventador.obj', function ( object ) {
+                object.position.set(-70,0,100);
+                object.rotateY(Math.PI / 2);
+                object.scale.set(0.2,0.2,0.2);
+                loadedObject = object;
+                scene.add( object );
+
+            },
+            // called when loading is in progresses
+            function ( xhr ) {
+
+                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+            },
+            // called when loading has errors
+            function ( error ) {
+
+                console.log( 'An error happened' );
+
+            });
+
+    });
+
+
+
+
+    // instantiate a loader
+    var loader = new THREE.OBJLoader();
+
+
 
     loader.load(
         // resource URL
@@ -201,9 +247,6 @@ function init() {
     );
 
 
-    var light = new THREE.DirectionalLight(0xddd, 1);
-    light.position.set(0, 200, 1);
-    scene.add(light);
 
     var controls = new THREE.OrbitControls(camera);
     controls.autoRotate = true;
@@ -216,6 +259,7 @@ function animate() {
     requestAnimationFrame(animate);
     MoveCar();
     MoveCloud();
+    MovePlane();
     render();
 }
 
@@ -225,13 +269,19 @@ function MoveCar() {
         loadedObject.position.set(-450,0,100);
     }
 }
+
+function MovePlane() {
+    loadedObject3.rotateX(Math.PI / 180);
+    loadedObject3.translateZ(-1);
+
+}
+
 function MoveCloud() {
     loadedObject2.position.x += 1;
     if (loadedObject2.position.x === 450) {
         loadedObject2.position.set(-450,Math.floor(Math.random() * 101) + 250  ,Math.floor(Math.random() * 1000) - 500  );
     }
 }
-
 function update() {
 
 }
