@@ -43,6 +43,11 @@ function House(x, y, z, rotate) {
         window3.position.z -= 50;
     }
     scene.add(window3);
+
+    var geometrychimney = new THREE.CubeGeometry(10, 25, 10);
+    var chimney = new THREE.Mesh(geometrychimney, material2);
+    chimney.position.set(x + 12.5, y + 50, z);
+    scene.add(chimney);
 }
 
 function Tree(x,y,z) {
