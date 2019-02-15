@@ -120,7 +120,27 @@ function init() {
     Tree(-350,25,270);
     Tree(-450,25,270);
 
-    Lantern(0,25,10);
+    Lantern(450,25,25);
+    Lantern(350,25,25);
+    Lantern(250,25,25);
+    Lantern(150,25,25);
+    Lantern(50,25,25);
+    Lantern(-50,25,25);
+    Lantern(-150,25,25);
+    Lantern(-250,25,25);
+    Lantern(-350,25,25);
+    Lantern(-450,25,25);
+
+    Lantern(450,25,245);
+    Lantern(350,25,245);
+    Lantern(250,25,245);
+    Lantern(150,25,245);
+    Lantern(50,25,245);
+    Lantern(-50,25,245);
+    Lantern(-150,25,245);
+    Lantern(-250,25,245);
+    Lantern(-350,25,245);
+    Lantern(-450,25,245);
 
     Sun(800,400,35);
 
