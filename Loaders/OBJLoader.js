@@ -36,7 +36,7 @@ THREE.OBJLoader = ( function () {
 
                 }
 
-                var previousMaterial = ( this.object && typeof this.object.currentMaterial === 'function' ? this.object.currentMaterial() : undefined );
+                var  previousMaterial = ( this.object && typeof this.object.currentMaterial === 'function' ? this.object.currentMaterial() : undefined );
 
                 if ( this.object && typeof this.object._finalize === 'function' ) {
 
