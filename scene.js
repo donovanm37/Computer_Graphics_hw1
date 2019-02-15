@@ -50,7 +50,7 @@ function init() {
     scene.add(floor);
 
     var floorTexture2 = new THREE.ImageUtils.loadTexture('images/asphalt.jpg');
-    floorTexture2.wrapS = floorTexture2.wrapT = THREE.RepeatWrapping;
+    floorTexture2.wrapS = floorTexture2.wrapT = THREE.RepeatWrapping;1
     floorTexture2.repeat.set(10, 10);
     var floorMaterial2 = new THREE.MeshBasicMaterial({ map: floorTexture2, side: THREE.DoubleSide });
     var floorGeometry2 = new THREE.PlaneGeometry(1000, 200, 10, 10);
