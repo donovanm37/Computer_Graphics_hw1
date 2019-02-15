@@ -60,7 +60,7 @@ function Tree(x,y,z) {
     scene.add(cylinder);
 
     var geometry2 = new THREE.SphereGeometry( 10, 32, 32 );
-    var material2 = new THREE.MeshLambertMaterial( {color: 0x136207} );
+    var material2 = new THREE.MeshLambertMaterial( {color: 0x136207, reflectivity: 30} );
     var sphere = new THREE.Mesh( geometry2, material2 );
     sphere.position.set(x,y + 25,z);
     scene.add(sphere);
@@ -81,7 +81,7 @@ function Sun(x, y, z) {
     directionalLight.position.set(x,y,z);
     scene.add( directionalLight );
 
-    var geometry = new THREE.SphereGeometry( 10, 32, 32 );
+    var geometry = new THREE.SphereGeometry( 20, 32, 32 );
     var material = new THREE.MeshBasicMaterial( {color: 0xf9d71c} );
     var sphere = new THREE.Mesh( geometry, material );
     sphere.position.set(x,y,z);
@@ -103,7 +103,7 @@ function Lantern(x,y,z) {
     scene.add(lamp);
 
     var geometry2 = new THREE.CylinderBufferGeometry( 10, 5, 10, 8 );
-    var material2 = new THREE.MeshPhongMaterial( {color: 0xffffff} );
+    var material2 = new THREE.MeshPhongMaterial( {color: 0xffffff, shiny: 20} );
     var cylinder2 = new THREE.Mesh( geometry2, material2 );
     cylinder2.position.set(x,y + 25,z);
     scene.add( cylinder2 );

@@ -147,8 +147,7 @@ function init() {
     Sun(800,400,35);
     Plane(0,300,-100);
     Car(-70,0,100);
-    Cloud(-70,300,100)
-
+    Cloud(-70,300,100);
     var controls = new THREE.OrbitControls(camera);
     controls.autoRotate = true;
     controls.autoRotateSpeed = 2;
@@ -220,50 +219,5 @@ function onDocumentKeyPress( event ) {
     }
     camera.updateProjectionMatrix();
 }
-//// Create scene
-//var scene = new THREE.Scene();
-
-//// Create camera
-//var camera = new THREE.PerspectiveCamera(
-//	75, // fov — Camera frustum vertical field of view.
-//	window.innerWidth/window.innerHeight, // aspect — Camera frustum aspect ratio.
-//	0.1, // near — Camera frustum near plane.
-//	1000); // far — Camera frustum far plane. 
-
-//// Create renderer
-//var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-//renderer.setSize(window.innerWidth, window.innerHeight);
-//document.body.appendChild(renderer.domElement);
-
-////create
-//var geometry = new THREE.BoxGeometry(1, 1, 1);
-//var material = new THREE.MeshPhongMaterial({color:0x27a, shininess: 100});
-//var cube = new THREE.Mesh(geometry, material);
-//scene.add(cube);
-
-///*
-//var dir_names = ["posx.jpg", "negx.jpg", "posy.jpg", "negy.jpg", "posz.jpg", "negz.jpg"];
-//var materialArray = [];
-//for (var i = 0; i < 6; i++) {
-//	materialArray.push(
-//		new THREE.BasicMaterial(({
-//			map: THREE.ImageUtils.loadTexture(dir_names[i]),
-//			side: THREE.BackSide
-//		})
-//	);
-//}
-
-//var sky_geometry = 
-//var sky_material =
-//*/
-
-
-
-
-//camera.position.x = 2;
-//camera.position.y = 1;
-//camera.position.Z = 5;
-////renderer.render(scene, camera);
-
 
 var clock = new THREE.Clock();
