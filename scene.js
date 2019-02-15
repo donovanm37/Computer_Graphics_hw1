@@ -1,5 +1,6 @@
 var scene, camera, renderer;
 var loadedObject = null;
+var loadedObject2 = null;
 var spotLight, lightHelper, shadowCameraHelper;
 init();
 animate();
@@ -174,6 +175,32 @@ function init() {
         }
     );
 
+    loader.load(
+        // resource URL
+        'Objects/cloud.obj',
+        // called when resource is loaded
+        function ( object ) {
+            object.position.set(-70,300,100);
+            object.scale.set(0.2,0.2,0.2);
+            loadedObject2 = object;
+            scene.add( object );
+
+        },
+        // called when loading is in progresses
+        function ( xhr ) {
+
+            console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+        },
+        // called when loading has errors
+        function ( error ) {
+
+            console.log( 'An error happened' );
+
+        }
+    );
+
+
     var light = new THREE.DirectionalLight(0xddd, 1);
     light.position.set(0, 200, 1);
     scene.add(light);
@@ -188,6 +215,7 @@ function init() {
 function animate() {
     requestAnimationFrame(animate);
     MoveCar();
+    MoveCloud();
     render();
 }
 
@@ -197,6 +225,13 @@ function MoveCar() {
         loadedObject.position.set(-450,0,100);
     }
 }
+function MoveCloud() {
+    loadedObject2.position.x += 1;
+    if (loadedObject2.position.x === 450) {
+        loadedObject2.position.set(-450,Math.floor(Math.random() * 101) + 250  ,Math.floor(Math.random() * 1000) - 500  );
+    }
+}
+
 function update() {
 
 }
