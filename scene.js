@@ -148,6 +148,7 @@ function init() {
     Plane(0,300,-100);
     Car(-70,0,100);
     Cloud(-70,300,100);
+    MailBox(30, 14, 0);
     var controls = new THREE.OrbitControls(camera);
     controls.autoRotate = true;
     controls.autoRotateSpeed = 2;

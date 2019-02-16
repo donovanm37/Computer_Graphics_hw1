@@ -112,7 +112,7 @@ function Lantern(x,y,z) {
 
 function Car(x,y,z){
     var mtlLoader = new THREE.MTLLoader();
-    mtlLoader.setPath( 'Objects/' );
+    mtlLoader.setPath( 'Objects/Materials/' );
     url = "Lamborghini_Aventador.mtl";
     mtlLoader.load( url, function( materials ) {
 
@@ -175,7 +175,7 @@ function Cloud(x,y,z) {
 
 function Plane(x,y,z) {
     var mtlLoader = new THREE.MTLLoader();
-    mtlLoader.setPath( 'Objects/' );
+    mtlLoader.setPath( 'Objects/Materials/' );
     var url = "Plane.mtl";
     mtlLoader.load( url, function( materials ) {
 
@@ -189,6 +189,39 @@ function Plane(x,y,z) {
                 object.scale.set(0.2,0.2,0.2);
                 object.rotateY(Math.PI / 4);
                 loadedObject3 = object;
+                scene.add( object );
+
+            },
+            // called when loading is in progresses
+            function ( xhr ) {
+
+                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+            },
+            // called when loading has errors
+            function ( error ) {
+
+                console.log( 'An error happened' );
+
+            });
+
+    });
+}
+
+function MailBox(x,y,z){
+    var mtlLoader = new THREE.MTLLoader();
+    mtlLoader.setPath( 'Objects/Materials/' );
+    var url = "pstblpll2.mtl";
+    mtlLoader.load( url, function( materials ) {
+
+        materials.preload();
+
+        var objLoader = new THREE.OBJLoader();
+        objLoader.setMaterials( materials );
+        objLoader.setPath( 'Objects/' );
+        objLoader.load( 'pstblpll2.obj', function ( object ) {
+                object.position.set(x,y,z);
+                object.scale.set(3,3,3);
                 scene.add( object );
 
             },
