@@ -167,23 +167,23 @@ function Car(x,y,z){
     });
 }
 
-
+// make a cloud with the use of obj loader
 function Cloud(x,y,z) {
-    var loader = new THREE.OBJLoader();
+    var loader = new THREE.OBJLoader(); // get obj loader ready
     loader.load(
         // resource URL
-        'Objects/cloud.obj',
+        'Objects/cloud.obj', // url of object
         // called when resource is loaded
         function ( object ) {
-            object.position.set(x,y,z);
-            object.scale.set(0.2,0.2,0.2);
-            loadedObject2 = object;
-            scene.add( object );
+            object.position.set(x,y,z); // set pos
+            object.scale.set(0.2,0.2,0.2); // make it smaller cuz obj are gigantic
+            loadedObject2 = object; // set it in this variable so it can animate
+            scene.add( object ); // add to scene
 
         },
         // called when loading is in progresses
         function ( xhr ) {
-
+            //add in console the percentage of done
             console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
 
         },
@@ -195,29 +195,29 @@ function Cloud(x,y,z) {
         }
     );
 }
-
+//make a plane with the use of obj loader and mtl loader
 function Plane(x,y,z) {
-    var mtlLoader = new THREE.MTLLoader();
-    mtlLoader.setPath( 'Objects/Materials/' );
-    var url = "Plane.mtl";
-    mtlLoader.load( url, function( materials ) {
+    var mtlLoader = new THREE.MTLLoader(); // get mtl loader
+    mtlLoader.setPath( 'Objects/Materials/' ); // set path of mtl
+    var url = "Plane.mtl"; // get the mtl file
+    mtlLoader.load( url, function( materials ) { //load the file
 
-        materials.preload();
+        materials.preload(); //preload the materials
 
-        var objLoader = new THREE.OBJLoader();
-        objLoader.setMaterials( materials );
-        objLoader.setPath( 'Objects/' );
-        objLoader.load( 'Plane.obj', function ( object ) {
-                object.position.set(x,y,z);
-                object.scale.set(0.2,0.2,0.2);
-                object.rotateY(Math.PI / 4);
-                loadedObject3 = object;
-                scene.add( object );
+        var objLoader = new THREE.OBJLoader(); // get obj loader
+        objLoader.setMaterials( materials ); // set the materials to the obj
+        objLoader.setPath( 'Objects/' ); // set path of the objects
+        objLoader.load( 'Plane.obj', function ( object ) { // load the object
+                object.position.set(x,y,z); // set pos
+                object.scale.set(0.2,0.2,0.2); // make its smaller cuz obj files are standard gigantic
+                object.rotateY(Math.PI / 4); // rotate it so its pointng the right direction
+                loadedObject3 = object; // set it in variable so it can be animated
+                scene.add( object ); // add to scene
 
             },
             // called when loading is in progresses
             function ( xhr ) {
-
+                //put in console the percentage of done
                 console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
 
             },
@@ -230,30 +230,30 @@ function Plane(x,y,z) {
 
     });
 }
-
+//make a mailbox with the use of mtl loader and objloader
 function MailBox(x,y,z,rotate){
-    var mtlLoader = new THREE.MTLLoader();
-    mtlLoader.setPath( 'Objects/Materials/' );
-    var url = "pstblpll2.mtl";
-    mtlLoader.load( url, function( materials ) {
+    var mtlLoader = new THREE.MTLLoader(); // load the mtlloader
+    mtlLoader.setPath( 'Objects/Materials/' ); // set path of mtl file
+    var url = "pstblpll2.mtl"; // get the mtl file
+    mtlLoader.load( url, function( materials ) { // load the mtl file
 
-        materials.preload();
+        materials.preload(); // load it
 
-        var objLoader = new THREE.OBJLoader();
-        objLoader.setMaterials( materials );
-        objLoader.setPath( 'Objects/' );
-        objLoader.load( 'pstblpll2.obj', function ( object ) {
-                object.position.set(x,y,z);
-                object.scale.set(3,3,3);
+        var objLoader = new THREE.OBJLoader(); //get the objloader
+        objLoader.setMaterials( materials ); // set the materials to the obj file
+        objLoader.setPath( 'Objects/' ); // set path of object file
+        objLoader.load( 'pstblpll2.obj', function ( object ) { // load the object file
+                object.position.set(x,y,z); // set pos
+                object.scale.set(3,3,3); // make it bigger cuz this object was really small
                 if (rotate === true) {
-                    object.rotateY(Math.PI);
+                    object.rotateY(Math.PI); // rotate it if other side of the road
                 }
-                scene.add( object );
+                scene.add( object ); // add to scene
 
             },
             // called when loading is in progresses
             function ( xhr ) {
-
+                //put th eloading percentage in the console log
                 console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
 
             },
