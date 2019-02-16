@@ -110,7 +110,7 @@ function Sun(x, y, z) {
 function Lantern(x,y,z) {
     //make the pole of the lantern
     var geometry = new THREE.CylinderGeometry( 5, 5, 50, 64 );
-    var material = new THREE.MeshPhongMaterial( {color: 0x808080} );
+    var material = new THREE.MeshPhongMaterial( {color: 0x808080, shininess: 60} );
     var cylinder = new THREE.Mesh( geometry, material );
     cylinder.position.set(x,y,z);
     scene.add(cylinder);
@@ -124,7 +124,7 @@ function Lantern(x,y,z) {
 
     //make the top of the lantern
     var geometry2 = new THREE.CylinderBufferGeometry( 10, 5, 10, 8 );
-    var material2 = new THREE.MeshPhongMaterial( {color: 0xffffff, shininess: 20} );
+    var material2 = new THREE.MeshPhongMaterial( {color: 0xffffff, shininess: 60} );
     var cylinder2 = new THREE.Mesh( geometry2, material2 );
     cylinder2.position.set(x,y + 25,z);
     scene.add( cylinder2 );
